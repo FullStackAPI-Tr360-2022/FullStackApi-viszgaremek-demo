@@ -1,0 +1,13 @@
+<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+  <div class="position-sticky pt-3">
+    <ul class="nav flex-column">
+      <li *ngFor="let item of sidebar" class="nav-item">
+        <a class="nav-link" aria-current="page" [routerLink]="item.link">
+          <i-feather *ngIf="item.icon" [name]="item.icon"></i-feather>
+            {{ item.title }}
+        </a>
+      </li>
+
+    </ul>
+  </div>
+</nav>
