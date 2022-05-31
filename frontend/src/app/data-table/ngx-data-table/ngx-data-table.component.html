@@ -1,0 +1,38 @@
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <th
+          *ngFor="let col of columns"
+          scope="col"
+        > {{ col.title }} </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of list | slice:startSlice:endSlice">
+        <td *ngFor="let col of columns"> {{ row[col.key] }} </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<nav aria-label="Page navigation example">
+  <ul class="pagination mt-4">
+    <li class="page-item"><button
+      class="page-link"
+      (click)="jumpToPage(page-1)"
+      [disabled]="page === 1"
+    >Prev.</button></li>
+    <li
+      *ngFor="let pageNum of pageList"
+      class="page-item"
+    ><button
+        class="page-link"
+        (click)="jumpToPage(pageNum)"
+      >{{ pageNum }}</button></li>
+    <li class="page-item"><button
+      class="page-link"
+      (click)="jumpToPage(page+1)"
+      [disabled]="page === pageList.length"
+    >Next</button></li>
+  </ul>
+</nav>

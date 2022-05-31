@@ -10,6 +10,7 @@ import { HomeComponent } from './page/home/home.component';
 import { ProductComponent } from './page/product/product.component';
 import { OrderComponent } from './page/order/order.component';
 import { IconModule } from './icon/icon.module';
+import { DataTableModule } from './data-table/data-table.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { IconModule } from './icon/icon.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     IconModule,
+    DataTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

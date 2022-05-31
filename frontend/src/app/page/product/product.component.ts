@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ConfigService } from 'src/app/service/config.service';
+import { ProductService } from 'src/app/service/product.service';
 
 @Component({
   selector: 'app-product',
@@ -7,7 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductComponent implements OnInit {
 
-  constructor() { }
+  columns = this.config.productTableColumns;
+
+  list$ = this.productService.getAll();
+
+  constructor(
+    private config: ConfigService,
+    private productService: ProductService,
+  ) { }
 
   ngOnInit(): void {
   }
