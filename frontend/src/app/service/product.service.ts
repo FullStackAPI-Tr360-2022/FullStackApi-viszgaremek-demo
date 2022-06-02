@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Product } from '../model/product';
 
 @Injectable({
@@ -38,18 +40,14 @@ export class ProductService {
     },
   ];
 
-  constructor() { }
+  apiUrl = environment.apiUrl;
+
+  constructor(
+    private http: HttpClient,
+  ) { }
 
   getAll(): Observable<Product[]> {
-    const list = [];
-    for (let i = 0; i < 10; i++) {
-      const item = [...this.list];
-      for (let j = 0; j < item.length; j++) {
-        item[j]._id = `id-${ Math.round( Math.random() * 10000 ) }`;
-        list.push(item[j]);
-      }
-    }
-    return of(list);
+    return this.http.get<Product[]>(`${this.apiUrl}product`);
   }
 
 }
