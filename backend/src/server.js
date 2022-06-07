@@ -23,6 +23,7 @@ app.use(bodyParser.json());
 
 // Products
 app.use('/product', require('./controller/product/router'));
+app.use('/login', require('./controller/login/router'));
 
 app.use('/', (req, res) => {
     console.log(req.url);
