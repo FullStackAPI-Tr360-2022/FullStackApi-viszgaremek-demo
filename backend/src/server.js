@@ -21,8 +21,10 @@ app.use(cors());
 app.use(express.static('public'));
 app.use(bodyParser.json());
 
+const authencticateJwt = require('./model/auth/authenticate');
+
 // Products
-app.use('/product', require('./controller/product/router'));
+app.use('/product', authencticateJwt, require('./controller/product/router'));
 app.use('/login', require('./controller/login/router'));
 
 app.use('/', (req, res) => {

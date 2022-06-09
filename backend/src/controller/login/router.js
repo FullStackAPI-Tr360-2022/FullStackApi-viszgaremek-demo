@@ -1,5 +1,6 @@
 const express = require('express');
 const User = require('../../model/user');
+const jwt = require('jsonwebtoken');
 
 const router = express.Router();
 
@@ -33,7 +34,19 @@ router.post('/', async (req, res, next) => {
             return res.sendStatus(403);
         }
 
-        res.json({ success: true });
+        const accessToken = jwt.sign({
+            _id: user._id,
+            email: user.email,
+            role: 1,
+        }, 'egynagyontitkosszöveg', {
+            expiresIn: '1h',
+        });
+
+        res.json({ 
+            success: true, 
+            accessToken, 
+            user: {...user._doc, password: ''},
+        });
     });
 });
 
