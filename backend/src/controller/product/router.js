@@ -9,6 +9,15 @@ router.get('/', (req, res, next) => {
     return controller.findAll(req, res, next);
 });
 
+router.get('/:id', (req, res, next) => {
+    return controller.findOne(req, res, next);
+});
+
+// patch
+router.patch('/:id', (req, res, next) => {
+    return controller.updateOne(req, res, next);
+});
+
 module.exports = router;
 
 /*

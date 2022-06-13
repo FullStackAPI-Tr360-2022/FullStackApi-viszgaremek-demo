@@ -16,6 +16,7 @@ import { DataTableModule } from './data-table/data-table.module';
 import { LoginComponent } from './page/login/login.component';
 import { JwtInterceptor } from './service/jwt.interceptor';
 import { AuthService } from './service/auth.service';
+import { ProductEditorComponent } from './page/product-editor/product-editor.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AuthService } from './service/auth.service';
     HomeComponent,
     ProductComponent,
     OrderComponent,
-    LoginComponent
+    LoginComponent,
+    ProductEditorComponent
   ],
   imports: [
     BrowserModule,

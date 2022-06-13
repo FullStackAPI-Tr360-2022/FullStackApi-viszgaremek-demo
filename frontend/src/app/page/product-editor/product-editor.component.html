@@ -1,0 +1,13 @@
+<form (ngSubmit)="update(product)" *ngIf="product$ | async as product">
+  <div class="form-group">
+    <label>Name</label>
+    <input
+      name="name"
+      [(ngModel)]="product.name"
+      type="text"
+      class="form-control"
+    ></div>
+  <button class="btn btn-primary mt-4">
+    Update
+  </button>
+</form>

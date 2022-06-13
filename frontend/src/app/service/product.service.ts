@@ -50,4 +50,17 @@ export class ProductService {
     return this.http.get<Product[]>(`${this.apiUrl}product`);
   }
 
+  getOne(id: string): Observable<Product> {
+    return this.http.get<Product>(`${this.apiUrl}product/${id}`);
+  }
+
+  update(entity: Product): Observable<Product> {
+    const id = entity._id;
+    delete entity._id;
+    return this.http.patch<Product>(
+      `${this.apiUrl}product/${id}`,
+      entity,
+    );
+  }
+
 }

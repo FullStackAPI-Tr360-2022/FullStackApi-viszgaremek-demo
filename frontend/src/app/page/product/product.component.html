@@ -28,4 +28,5 @@
   *ngIf="list$ | async as list"
   [columns]="columns"
   [list]="list"
+  (onEdit)="startEdit($event)"
 ></ngx-data-table>

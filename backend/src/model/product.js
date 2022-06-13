@@ -4,6 +4,11 @@ const ProductSchema = mongoose.Schema({
     name: {
         type: String,
         required: true,
+        validate: {
+            validator: function(v) {
+                return /^[a-űA-Ű \-\.]{5,25}$/.test(v);
+            }
+        }
     },
     description: {
         type: String,
