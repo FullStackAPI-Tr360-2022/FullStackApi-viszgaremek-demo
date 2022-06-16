@@ -22,18 +22,20 @@ router.post('/', async (req, res, next) => {
 
     // return res.json({message: 'user created'});
 
+
+
     const { email, password } = req.body;
     const user = await User.findOne({ email });
 
     if (!user) {
-        return res.sendStatus(401);
+        return res.sendStatus(404);
     }
 
-    user.comparePassword(password, function(err, isMatch) {
-        if (err) {
-            return res.sendStatus(403);
-        }
+    user.password = 'test789';
+    await user.save();
 
+    const valid = user.verifyPasswordSync(password);
+    if (valid) {
         const accessToken = jwt.sign({
             _id: user._id,
             email: user.email,
@@ -47,7 +49,9 @@ router.post('/', async (req, res, next) => {
             accessToken, 
             user: {...user._doc, password: ''},
         });
-    });
+    } else {
+        return res.sendStatus(401);
+    }
 });
 
 module.exports = router;
