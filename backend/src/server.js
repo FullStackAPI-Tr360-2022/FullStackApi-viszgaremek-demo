@@ -4,6 +4,10 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const swaggerUi = require('swagger-ui-express');
+const YAML = require('yamljs');
+
+const swaggerDocument = YAML.load('./docs/swagger.yaml');
 
 const app = express();
 
@@ -26,6 +30,7 @@ const authencticateJwt = require('./model/auth/authenticate');
 // Products
 app.use('/product', authencticateJwt, require('./controller/product/router'));
 app.use('/login', require('./controller/login/router'));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 app.use('/', (req, res) => {
     console.log(req.url);
