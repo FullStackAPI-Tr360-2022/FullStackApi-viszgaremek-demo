@@ -1,8 +1,8 @@
 const express = require('express');
 const baseService = require('../base/service');
 
-module.exports = (model) => {
-    const service = baseService(model);
+module.exports = (model, populateList = []) => {
+    const service = baseService(model, populateList);
     return {
         findAll(req, res, next) {
             return service.findAll()

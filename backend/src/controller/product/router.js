@@ -1,5 +1,6 @@
 const express = require('express');
 const Product = require('../../model/product');
+// const controller = require('../base/controller')(Product, ['User']);
 const controller = require('../base/controller')(Product);
 
 const router = express.Router();

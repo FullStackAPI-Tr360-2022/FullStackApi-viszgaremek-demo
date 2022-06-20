@@ -1,7 +1,7 @@
-module.exports = (model) => {
+module.exports = (model, populateList = []) => {
     return {
-        findAll: () => model.find({}),
-        findOne: (id) => model.findById(id),
+        findAll: () => model.find({}).populate(...populateList),
+        findOne: (id) => model.findById(id).populate(...populateList),
         updateOne: async (id, body) => {
             const newEntity = new model(body);
             const error = newEntity.validateSync();

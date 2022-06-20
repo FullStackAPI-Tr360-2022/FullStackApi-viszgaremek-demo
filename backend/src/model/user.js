@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const SALT_WORK_FACTOR = 10;
 
 const UserSchema = mongoose.Schema({
     email: {
@@ -11,7 +10,13 @@ const UserSchema = mongoose.Schema({
     },
     lastName: String,
     firstName: String,
+    address: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Address',
+    },
 });
+
+// User.findAll().populate('address');
 
 UserSchema.plugin(require('mongoose-bcrypt'));
 
