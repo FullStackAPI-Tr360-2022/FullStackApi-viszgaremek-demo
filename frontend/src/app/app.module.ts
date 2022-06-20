@@ -17,6 +17,7 @@ import { LoginComponent } from './page/login/login.component';
 import { JwtInterceptor } from './service/jwt.interceptor';
 import { AuthService } from './service/auth.service';
 import { ProductEditorComponent } from './page/product-editor/product-editor.component';
+import { FileUploaderComponent } from './common/file-uploader/file-uploader.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ProductEditorComponent } from './page/product-editor/product-editor.com
     ProductComponent,
     OrderComponent,
     LoginComponent,
-    ProductEditorComponent
+    ProductEditorComponent,
+    FileUploaderComponent
   ],
   imports: [
     BrowserModule,
