@@ -1,4 +1,7 @@
-<form (ngSubmit)="update(product)" *ngIf="product$ | async as product">
+<form
+  (ngSubmit)="update(product)"
+  *ngIf="product$ | async as product"
+>
   <div class="form-group">
     <label>Name</label>
     <input
@@ -7,12 +10,50 @@
       type="text"
       class="form-control"
     ></div>
-    <div class="form-group">
-      <img [src]="getImageSrc(product)" alt="" class="product__image--preview">
-      <app-file-uploader (uploaded)="uploadSuccess($event)"></app-file-uploader>
-    </div>
-  <button class="btn btn-primary mt-4">
-    Update
-  </button>
+  <div class="form-group">
+    <img
+      [src]="getImageSrc(product)"
+      alt=""
+      class="product__image--preview"
+    >
+    <app-file-uploader (uploaded)="uploadSuccess($event)"></app-file-uploader>
+  </div>
+  <div class="form-group">
+    <label>Category</label>
+    <input
+      name="category"
+      [(ngModel)]="product.category"
+      typeaheadOptionField="name"
+      [typeahead]="suggestions$"
+      [typeaheadAsync]="true"
+      [optionsListTemplate]="customListTemplate"
+      class="form-control"
+      placeholder="choose a category"
+      (ngModelChange)="changeName($event)"
+    >
+  </div>
+  <!-- <div class="form-group">
+      <label>Category</label>
+      <select [(ngModel)]="product.category" name="category" class="form-control">
+        <option value="">choose a category</option>
+        <option *ngFor="let cat of categories$ | async" [value]="cat._id">
+          {{ cat.name }}
+        </option>
+      </select>
+    </div> -->
+  <button class="btn btn-primary mt-4"> Update </button>
+
+  {{ product  | json}}
 </form>
 
+<ng-template #customListTemplate let-matches="matches" let-query="query" let-typeaheadTemplateMethods>
+  <ul class="custom-list-group" [class.dropdown-menu]="isBs3">
+    <li class="custom-list-group-item"
+        *ngFor="let match of matches"
+        [class.active]="typeaheadTemplateMethods.isActive(match)"
+        (click)="typeaheadTemplateMethods.selectMatch(match, $event); selectCategory(match)"
+        (mouseenter)="typeaheadTemplateMethods.selectActive(match)">
+      {{ match.item.name }}
+    </li>
+  </ul>
+</ng-template>

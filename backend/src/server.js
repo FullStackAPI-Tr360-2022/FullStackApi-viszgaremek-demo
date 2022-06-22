@@ -58,8 +58,9 @@ app.post('/upload', (req, res) => {
 
 // Products
 app.use('/product', authencticateJwt, require('./controller/product/router'));
+app.use('/category', require('./controller/category/router'));
 app.use('/login', require('./controller/login/router'));
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use('/', (req, res) => {
     console.log(req.url);

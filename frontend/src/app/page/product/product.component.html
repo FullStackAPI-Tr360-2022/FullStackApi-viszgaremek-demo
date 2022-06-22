@@ -24,6 +24,11 @@
   </div>
 </div>
 <h2>Product List</h2>
+<!-- <div class="row">
+  <div (click)="createCategories()" class="col-12"><button class="btn btn-success">
+    Create Categories
+  </button></div>
+</div> -->
 <ngx-data-table
   *ngIf="list$ | async as list"
   [columns]="columns"

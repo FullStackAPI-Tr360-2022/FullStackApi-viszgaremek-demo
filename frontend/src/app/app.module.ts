@@ -18,6 +18,7 @@ import { JwtInterceptor } from './service/jwt.interceptor';
 import { AuthService } from './service/auth.service';
 import { ProductEditorComponent } from './page/product-editor/product-editor.component';
 import { FileUploaderComponent } from './common/file-uploader/file-uploader.component';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { FileUploaderComponent } from './common/file-uploader/file-uploader.comp
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    TypeaheadModule.forRoot(),
   ],
   providers: [
     {

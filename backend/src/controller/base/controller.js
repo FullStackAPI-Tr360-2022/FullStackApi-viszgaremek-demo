@@ -19,6 +19,18 @@ module.exports = (model, populateList = []) => {
                     res.statusCode = 501;
                     res.json(err);
                 });
+        },
+        create(req, res, next) {
+            return service.create(req.body)
+                .then(entity => res.json(entity))
+                .catch(err => {
+                    res.statusCode = 501;
+                    res.json(err);
+                });
+        },
+        search(req, res, next) {
+            return service.findAll(req.query)
+                .then(list => res.json(list));
         }
     };
 };
