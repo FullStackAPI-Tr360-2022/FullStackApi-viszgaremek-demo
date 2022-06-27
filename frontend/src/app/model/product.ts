@@ -1,6 +1,7 @@
 import { Category } from "./category";
 
 export class Product {
+  [x: string]: any;
   _id?: string = '';
   name: string = '';
   description: string = '';

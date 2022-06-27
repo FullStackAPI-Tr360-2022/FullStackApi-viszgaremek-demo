@@ -11,7 +11,9 @@
     </thead>
     <tbody>
       <tr *ngFor="let row of list | slice:startSlice:endSlice">
-        <td *ngFor="let col of columns"> {{ row[col.key] }} </td>
+        <td *ngFor="let col of columns">
+          {{ row[col.key] | projector:col:row }}
+        </td>
         <td>
           <div class="btn-group">
             <button (click)="raiseEdit(row)" class="btn btn-info">

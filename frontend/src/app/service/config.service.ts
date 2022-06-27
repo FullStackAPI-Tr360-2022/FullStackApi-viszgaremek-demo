@@ -21,9 +21,16 @@ export class ConfigService {
   productTableColumns: INgxTableColumn[] = [
     {key: '_id', title: '#'},
     {key: 'name', title: 'Name'},
+    {key: 'category', title: 'Cat.',
+      projector: (row: {category: {name: string}}) => row.category?.name
+    },
     {key: 'description', title: 'Desc.'},
-    {key: 'price', title: 'Price'},
-    {key: 'active', title: 'Active'},
+    {key: 'price', title: 'Price',
+      projector: (row: {price: number}) => `${row.price} Ft`,
+    },
+    {key: 'active', title: 'Active',
+      projector: (row: {active: boolean}) => row.active ? 'igen' : 'nem',
+    },
   ];
 
   constructor() { }

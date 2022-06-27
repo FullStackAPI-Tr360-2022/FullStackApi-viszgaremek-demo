@@ -3,6 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export interface INgxTableColumn {
   title: string;
   key: string;
+  projector?: Function;
 }
 
 @Component({

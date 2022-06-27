@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { combineLatest } from 'rxjs';
+import { combineLatest, map } from 'rxjs';
 import { Product } from 'src/app/model/product';
 import { CategoryService } from 'src/app/service/category.service';
 import { ConfigService } from 'src/app/service/config.service';
@@ -15,7 +15,21 @@ export class ProductComponent implements OnInit {
 
   columns = this.config.productTableColumns;
 
-  list$ = this.productService.getAll();
+  columnsWithProjector = this.columns.filter( c => c.projector );
+
+  list$ = this.productService.getAll()
+  // .pipe(
+  //   map( (list: Product[]) => {
+  //     return list.map( product => {
+  //       this.columnsWithProjector.forEach( col => {
+  //         if (col.projector) {
+  //           product[col.key] = col.projector(product);
+  //         }
+  //       });
+  //       return product;
+  //     });
+  //   }),
+  // ); // => | async
 
   categories$ = this.categoryService.getAll();
 
