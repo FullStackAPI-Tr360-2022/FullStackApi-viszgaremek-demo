@@ -21,3 +21,23 @@ const UserSchema = mongoose.Schema({
 UserSchema.plugin(require('mongoose-bcrypt'));
 
 module.exports = mongoose.model('User', UserSchema);
+
+/*
+Group
+  .find({})
+  .populate({
+    path: 'users',			
+    populate: { 
+        path:  'address',
+        model: 'address',
+        populate: {
+            path: ['zip', 'city', 'street'],
+            model: '',
+            populate: {
+                path: '',
+                model: ''
+            }
+        }
+    }
+  })
+*/
